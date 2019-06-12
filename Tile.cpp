@@ -42,3 +42,11 @@ tuple <int, int> Tile::getLocation() const {
     return make_tuple(this->xloc, this->yloc);
 }
 
+Map& Tile::getParent(){
+  return this->parent;
+}
+
+void Tile::setLocation(int x, int y){
+  this->xloc = x;
+  this->yloc = y;
+}

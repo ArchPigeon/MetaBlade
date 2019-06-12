@@ -17,9 +17,9 @@
 #define TILE_H
 
 #include <tuple>
+#include "TileTypes.h"
 #include "Creature.h"
 #include "Map.h"
-#include "TileTypes.h"
 
 using namespace std;
 
