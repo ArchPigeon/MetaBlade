@@ -1,0 +1,10 @@
+//Name: Pc.cpp
+//Author: Cason White
+
+#include "Pc.h"
+
+
+tuple <int, int> Pc::movePc(int d) {
+
+    tuple <int, int> loc = Creature::getTile()->getLocation();
+}

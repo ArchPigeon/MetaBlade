@@ -1,0 +1,38 @@
+#include "Tile.h"
+
+using namespace std;
+
+Tile::Tile(Map& p, bool type, TileKind mat, Creature* inh, tuple <int, int> loc) :
+    parent(p), tileType(type), material(mat), inhab(inh), location(loc) {}
+
+void Tile::setTileType(bool t) {
+    Tile::tileType = t;
+}
+
+bool Tile::getTileType() const {
+    return Tile::tileType;
+}
+
+
+void Tile::setCreature(Creature* inh) {
+    Tile::inhab = inh;
+}
+
+Creature* Tile::getCreature() const {
+    
+    return Tile::inhab;
+}
+
+void Tile::setTileMaterial(TileKind t) {
+    Tile::material = t;
+}
+
+TileKind Tile::getTileMaterial() const {
+    return Tile::material;
+
+}
+
+tuple <int, int> Tile::getLocation() const {
+    return Tile::location;
+}
+
