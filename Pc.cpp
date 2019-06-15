@@ -1,9 +1,12 @@
 //Name: Pc.cpp
 //Author: Cason White
-//TODO: take 5 minutes and set @ as the symbol for PC in a constructor
 
 #include "Pc.h"
 
+
+Pc::Pc(Tile*t, char c) : Creature(t, c){
+    
+}
 
 tuple <int, int> Pc::movePc(int d) {
 

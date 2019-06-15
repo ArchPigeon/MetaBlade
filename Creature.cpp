@@ -14,7 +14,11 @@
 
 #include "Creature.h"
 
-Creature::Creature(Tile* loc, char sym) : location(loc), symbol(sym) {}
+Creature::Creature(Tile* loc, char sym) : location(loc), symbol(sym) {
+
+    getTile()->setCreature(this);
+    
+}
 
 //moves the pointer pointing to this creature from one tile to another
 void Creature::setTile(Tile* from, Tile* to) {

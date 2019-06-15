@@ -30,7 +30,7 @@ private:
     int x;
     int y;
 
-    void VTalloc(vector<Tile*> t);
+    //  void Valloc(vector<Tile*> t);
 
 public:
 

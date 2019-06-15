@@ -20,6 +20,7 @@ class Pc : public Creature {
     
 public:
 
+    Pc(Tile* t, char c);
     tuple <int, int> movePc(int d);
     
 };

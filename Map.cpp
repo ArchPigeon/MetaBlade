@@ -19,23 +19,29 @@
 //the constructor creates a two dimensional vector of Tile pointers to act as the map.
 //each tile by default is a floor.
 Map::Map(int x, int y) {
-    
-    this->floor.resize(x);
+
+    this->x = x;
+    this->y = y;
+     
+    floor.resize(x);
     
     for(int i =0; i < this->x; i++) {
 	
-	this->floor[i].resize(y);
-	this->VTalloc(this->floor[i]);
+	floor[i].resize(y);
+	for(int j = 0; j < this->y; j++) {
+	    floor[i][j] = new Tile(*this);
+	}
+	//	Valloc(this->floor[i]);
 	
     }
 }
 
 //allocates a column of Tile objects into memory
-void Map::VTalloc(vector<Tile*> t) {
-    for(int i = 0; i < this->y; i++) {
-	t[i] = new Tile(*this);
-    }
-}
+// void Map::Valloc(vector<Tile*> t) {
+//     for(int i = 0; i < this->y; i++) {
+// 	t[i] = new Tile(*this);
+//     }
+// }
 
 tuple <int, int> Map::getSize(){
     return make_tuple(this->x, this->y);
@@ -59,7 +65,8 @@ void Map::cRow(int row, int r1, int r2, TileType tile, bool value) {
 //TODO: add some default parameters so you can change either the tile or the value if you want
 void Map::cColumn(int col, int r1, int r2, TileType tile, bool value) {
     for(int i = r1; i < this->x - r2; i++) {
-	Tile* t = this->floor[i][col];
+	Tile* t =
+	    this->floor[i][col];
 	t->setLocation(i, col);
 	t->setTileType(tile);
 	t->setPassable(value);
@@ -81,10 +88,10 @@ void Map::createArena() {
 }
 
 void Map::printMap() {
-    for(int i = 0; i < this->x; i++) {
-	for(int j = 0; j < this->y; j++) {
+    for(int i = 0; i < x; i++) {
+	for(int j = 0; j < y; j++) {
 	    
-	    Tile* t = this->floor[i][j];
+	    Tile* t = floor[i][j];
 	    if(t->getCreature() == NULL) {
 		
 		if(t->getTileType() == wall )
