@@ -33,12 +33,14 @@ class Creature {
 
     Creature(Tile* loc, char sym);
     
-    void setTile(Tile* from, Tile* to);
+    void setTile(Tile* to);
     Tile* getTile();
 
     char getSymbol() const;
 
     void moveCreature(int x, int y);
+    void movePc(int d);
+
 
 };
 

@@ -21,9 +21,10 @@ Creature::Creature(Tile* loc, char sym) : location(loc), symbol(sym) {
 }
 
 //moves the pointer pointing to this creature from one tile to another
-void Creature::setTile(Tile* from, Tile* to) {
+void Creature::setTile(Tile* to) {
     to->setCreature(this);
-    from->setCreature(NULL);
+    location->setCreature(NULL);
+    location = to;
 }
 
 Tile* Creature::getTile() {
@@ -37,11 +38,69 @@ char Creature::getSymbol() const {
 // moveCreature(x, y) moves a Creature object within it's containing Map object.  (x,y)
 // denotes the (x,y) position within the two dimensional array they are to be moved to
 void Creature::moveCreature(int x, int y) {
-    Tile* from = this->getTile();
-    Tile* to = from->getParent().getTileAt(x, y);
-if(to->getPassable() == true)
-    {
-	to->setCreature(this);
-	this->setTile(from, to);
+    Tile* to = getTile()->getParent().getTileAt(x, y);
+    if(to->getPassable() == true)
+	{
+	    this->setTile(to);
+	}
+}
+
+void  Creature::movePc(int d) {
+
+    Tile* t = getTile();
+    tuple <int, int> loc = t->getLocation();
+    Map& m = t->getParent();
+    int x = get <0> (loc);
+    int y = get <1> (loc);
+
+    switch(d) {
+	
+    case 1:
+	this->moveCreature(x - 1,y +1);
+	m.setPcLoc(getTile());
+	break;
+	
+    case 2:
+	this->moveCreature(x, y + 1);
+	m.setPcLoc(getTile());
+	break;
+
+    case 3:
+	this->moveCreature(x+1, y+1);
+	m.setPcLoc(getTile());
+	break;
+
+    case 4:
+	this->moveCreature(x-1, y);
+	m.setPcLoc(getTile());
+	break;
+
+    case 5:
+	break;
+
+    case 6:
+	this->moveCreature(x+1,y);
+	m.setPcLoc(getTile());
+	break;
+
+    case 7:
+	this->moveCreature(x-1, y-1);
+	m.setPcLoc(getTile());
+	break;
+
+    case 8:
+	this->moveCreature(x, y - 1);
+	m.setPcLoc(getTile());
+	break;
+
+    case 9:
+	this->moveCreature(x+1, y-1);
+	m.setPcLoc(getTile());
+	break;
+
+    default:
+	printf("incorrect direction");
     }
+
+    //return make_tuple (x,y);
 }

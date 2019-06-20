@@ -2,7 +2,8 @@
 
 using namespace std;
 
-Tile::Tile(Map& p) : parent(p) {}
+Tile::Tile(Map& p, int x, int y) :
+    parent(p), xloc(x), yloc(y) {}
 
 void Tile::setPassable(bool t) {
     this->passable = t;
@@ -26,7 +27,7 @@ void Tile::setCreature(Creature* inh) {
 
 Creature* Tile::getCreature() const {
     
-    return Tile::inhab;
+    return inhab;
 }
 
 void Tile::setTileMaterial(TileKind t) {

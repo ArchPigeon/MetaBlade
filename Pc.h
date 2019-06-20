@@ -8,22 +8,21 @@
 // tuple <int, int> movePc(int d) - moves the pc a keypad direction and returns the pc's new location within
 // the map
 
-#ifndef PC_H
-#define PC_H
+// #ifndef PC_H
+// #define PC_H
 
-#include "Creature.h"
-#include <tuple>
+// #include "Creature.h"
+// #include <tuple>
 
-using namespace std;
+// using namespace std;
 
-class Pc : public Creature {
+// class Pc : public Creature {
     
-public:
+// public:
 
-    Pc(Tile* t, char c);
-    tuple <int, int> movePc(int d);
-    
-};
+//     Pc(Tile* t, char c);
+        
+// };
 
 
-#endif
+// #endif

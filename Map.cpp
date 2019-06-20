@@ -24,16 +24,20 @@ Map::Map(int x, int y) {
     this->y = y;
      
     floor.resize(x);
+
     
-    for(int i =0; i < this->x; i++) {
+    for(int i =0; i < x; i++) {
 	
 	floor[i].resize(y);
-	for(int j = 0; j < this->y; j++) {
-	    floor[i][j] = new Tile(*this);
+	for(int j = 0; j < y; j++) {
+	    floor[i][j] = new Tile(*this, i, j);
 	}
 	//	Valloc(this->floor[i]);
 	
     }
+    
+
+    
 }
 
 //allocates a column of Tile objects into memory
@@ -74,8 +78,6 @@ void Map::cColumn(int col, int r1, int r2, TileType tile, bool value) {
 }
 
 void Map::createArena() {
-    //ya gotta add in the location for each tile
-    //also add in the TileType
     int x = this->x;
     int y = this->y;
 
@@ -83,13 +85,14 @@ void Map::createArena() {
     this->cRow(y-1, 1, 1, wall, false);
     this->cColumn(0, 0, 0, wall, false);
     this->cColumn(x-1, 0, 0, wall, false);
-    
-    
+
+    pcLoc =  getTileAt(x/2, y/2);
+    new Creature(pcLoc, '@');
 }
 
 void Map::printMap() {
-    for(int i = 0; i < x; i++) {
-	for(int j = 0; j < y; j++) {
+    for(int j = 0; j < y; j++) {
+	for(int i = 0; i < x; i++) {
 	    
 	    Tile* t = floor[i][j];
 	    if(t->getCreature() == NULL) {
@@ -100,18 +103,26 @@ void Map::printMap() {
 		       printf(".");
 	    }
 	    else
-		printf("@");
+		printf("%c", t->getCreature()->getSymbol());
 	}
 	printf("\n");
     }
 }
 
+Tile* Map::getPcLoc() {
+    return pcLoc;
+}
+
+void Map::setPcLoc(Tile* loc) {
+    pcLoc = loc;
+}
+
 Map::~Map() {
-    for(int i = 0; i<this->x; i++) {
+    for(int i = 0; i < x; i++) {
 	
-	for(int j = 0; j<this->y; j++) {
+	for(int j = 0; j < y; j++) {
 	    
-	    delete this->floor[i][j];
+	    delete floor[i][j];
 	}
 	
     }

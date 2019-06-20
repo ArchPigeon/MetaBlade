@@ -42,7 +42,7 @@ private:
 
 public:
     
-    Tile(Map& p);
+    Tile(Map& p, int x, int y);
 
     Map& getParent();
     

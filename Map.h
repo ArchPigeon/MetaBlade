@@ -6,6 +6,9 @@
 
 //The members are as follows:
 //Tile* floor - a 2d array which stores the information of every tile on the floor, as well as it's location,
+//int x = x size of map
+//int y = y size of map
+//Tile* pcLoc - current Tile location of the player character
 //                      denoted by the (x, y) position of the array.
 
 
@@ -14,6 +17,7 @@
 #define MAP_H
 
 #include "Creature.h"
+#include "Pc.h"
 #include "Tile.h"
 
 #include <tuple>
@@ -23,10 +27,12 @@ using namespace std;
 
 class Tile;
 class Creature;
+class Pc;
 class Map {
 
 private:
     vector <vector <Tile*> > floor;
+    Tile* pcLoc;
     int x;
     int y;
 
@@ -45,8 +51,9 @@ public:
     void pMovePlayer(char dir);
 
     void printMap();
-    // Creature& getPlayer() const;
-    // void setPlayer(Tile* loc);
+
+    Tile* getPcLoc();
+    void setPcLoc(Tile* loc);
 
     
     
