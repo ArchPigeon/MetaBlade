@@ -17,6 +17,9 @@
 #define TILE_H
 
 #include <tuple>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+
 #include "TileTypes.h"
 #include "Creature.h"
 #include "Map.h"
@@ -27,24 +30,34 @@ using namespace std;
 class Map;
 class Creature;
 class Tile {
-
-   
     
 private:
-    Map& parent;
+     friend class boost::serialization::access;
+     template<class Archive>
+     void serialize(Archive & ar, const unsigned int version) {
+     	ar & parent;
+     	ar & passable;
+     	ar & tile;
+     	ar & material;
+     	ar & inhab;
+     	ar & xloc;
+     	ar & yloc;
+     }
+    Map* parent = NULL;
     bool passable = true;
     TileType tile = floor;
     TileKind material = dirt;
     Creature* inhab = NULL;
-    int xloc;
-    int yloc;
+    int xloc = 0;
+    int yloc = 0;
 
 
 public:
     
-    Tile(Map& p, int x, int y);
+    Tile(Map* p, int x, int y);
+    Tile() {}
 
-    Map& getParent();
+    Map* getParent();
     
     void setPassable(bool t);
     bool getPassable() const;

@@ -15,6 +15,8 @@
 //same for cColumn, only it changes columns.
 
 #include "Map.h"
+#include <fstream>
+using namespace std;
 
 //the constructor creates a two dimensional vector of Tile pointers to act as the map.
 //each tile by default is a floor.
@@ -30,15 +32,16 @@ Map::Map(int x, int y) {
 	
 	floor[i].resize(y);
 	for(int j = 0; j < y; j++) {
-	    floor[i][j] = new Tile(*this, i, j);
+	    floor[i][j] = new Tile(this, i, j);
 	}
 	//	Valloc(this->floor[i]);
 	
     }
     
-
+    
     
 }
+
 
 //allocates a column of Tile objects into memory
 // void Map::Valloc(vector<Tile*> t) {
@@ -46,6 +49,7 @@ Map::Map(int x, int y) {
 // 	t[i] = new Tile(*this);
 //     }
 // }
+
 
 tuple <int, int> Map::getSize(){
     return make_tuple(this->x, this->y);
@@ -116,6 +120,22 @@ Tile* Map::getPcLoc() {
 void Map::setPcLoc(Tile* loc) {
     pcLoc = loc;
 }
+
+void Map::saveGame(const char *fileName) {
+    ofstream ofs(fileName);
+    boost::archive::text_oarchive oa(ofs);
+    oa << this;
+}
+
+ void Map::loadGame(const char *fileName) {
+
+    ifstream ifs(fileName);
+    boost::archive::text_iarchive ia(ifs);
+    
+
+    
+}
+
 
 Map::~Map() {
     for(int i = 0; i < x; i++) {

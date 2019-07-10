@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Tile::Tile(Map& p, int x, int y) :
+Tile::Tile(Map* p, int x, int y) :
     parent(p), xloc(x), yloc(y) {}
 
 void Tile::setPassable(bool t) {
@@ -43,7 +43,7 @@ tuple <int, int> Tile::getLocation() const {
     return make_tuple(this->xloc, this->yloc);
 }
 
-Map& Tile::getParent(){
+Map* Tile::getParent(){
   return this->parent;
 }
 

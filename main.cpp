@@ -4,6 +4,8 @@
 #include "Tile.h"
 
 #include <cstdio>
+#include <fstream>
+
 
 using namespace std;
 
@@ -16,14 +18,26 @@ int main() {
     m.createArena();
     m.printMap();
 
-    printf("enter a numeric direction, or type q to quit: ");
-    scanf( "%c",  &c);
+    m.saveGame("test.txt");
+
+    Map n;
+
+    std::ifstream ifs("test.txt");
+    boost::archive::text_iarchive ia(ifs);
+    ia >> n;
+
+    n.printMap();
+
     
-     while(c != 'q') {
-	 m.getPcLoc()->getCreature()->movePc(c - '0');
-	 m.printMap();
-	 printf("enter a numeric direction, or type q to quit: ");
-	 scanf( "%c",  &c);
-     }
-    return 0;
+    
+    // printf("enter a numeric direction, or type q to quit: ");
+    // scanf( "%c",  &c);
+    
+    //  while(c != 'q') {
+    // 	 m.getPcLoc()->getCreature()->movePc(c - '0');
+    // 	 m.printMap();
+    // 	 printf("enter a numeric direction, or type q to quit: ");
+    // 	 scanf( "%c",  &c);
+    //  }
+     return 0;
 }

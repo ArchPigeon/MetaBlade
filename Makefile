@@ -1,5 +1,5 @@
-CXXFLAGS = -g -Wall  -Wuninitialized
-OFILES = Tile.o Creature.o Pc.o  Map.o
+CXXFLAGS = -g -Wall  -Wuninitialized -lboost_serialization
+OFILES = Tile.o Creature.o Map.o
 CXX = g++
 
 MetaBlade : $(OFILES)
@@ -14,8 +14,8 @@ Tile.o: Tile.cpp Tile.h
 Creature.o: Creature.cpp Creature.h 
 	$(CXX) $(CXXFLAGS) -c Creature.cpp
 
-Pc.o: Pc.cpp Pc.h
-	$(CXX) $(CXXFLAGS) -c Pc.cpp
+#Pc.o: Pc.cpp Pc.h
+#	$(CXX) $(CXXFLAGS) -c Pc.cpp
 
 clean:
 	rm $(OFILES) MetaBlade

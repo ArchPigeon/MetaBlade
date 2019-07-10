@@ -5,7 +5,7 @@
 //methods that create a debug arena map for testing purposes.
 
 //The members are as follows:
-//Tile* floor - a 2d array which stores the information of every tile on the floor, as well as it's location,
+// floor - a 2d vector which stores the information of every tile on the floor, as well as it's location,
 //int x = x size of map
 //int y = y size of map
 //Tile* pcLoc - current Tile location of the player character
@@ -17,8 +17,11 @@
 #define MAP_H
 
 #include "Creature.h"
-#include "Pc.h"
 #include "Tile.h"
+
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/serialization/vector.hpp>
 
 #include <tuple>
 #include <vector>
@@ -31,10 +34,20 @@ class Pc;
 class Map {
 
 private:
+    friend class boost::serialization::access;
+    template<class Archive>
+    void serialize(Archive & ar, const unsigned int version)
+    {
+        ar & floor;
+        ar & pcLoc;
+        ar & x;
+	ar & y;
+	
+    }
     vector <vector <Tile*> > floor;
-    Tile* pcLoc;
-    int x;
-    int y;
+    Tile* pcLoc = NULL;
+    int x = 0;
+    int y = 0;
 
     //  void Valloc(vector<Tile*> t);
 
@@ -51,6 +64,8 @@ public:
     void pMovePlayer(char dir);
 
     void printMap();
+    void saveGame(const char* fileName);
+    void loadGame(const char* fileName);
 
     Tile* getPcLoc();
     void setPcLoc(Tile* loc);
@@ -59,6 +74,7 @@ public:
     
     
     Map(int x, int y);
+    Map() {}
     ~Map();
 
 
