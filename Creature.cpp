@@ -56,7 +56,7 @@ void  Creature::movePc(int d) {
     switch(d) {
 
     case 0:
-	m->saveGame("test.txt");
+	//	m->saveGame("test.txt");
 	break;
 	
     case 1:
@@ -80,6 +80,7 @@ void  Creature::movePc(int d) {
 	break;
 
     case 5:
+	//	m->loadGame("test.txt");
 	break;
 
     case 6:

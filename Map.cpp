@@ -116,28 +116,14 @@ void Map::printMap() {
 Tile* Map::getPcLoc() {
     return pcLoc;
 }
-
 void Map::setPcLoc(Tile* loc) {
     pcLoc = loc;
 }
 
-void Map::saveGame(const char *fileName) {
-    ofstream ofs(fileName);
-    boost::archive::text_oarchive oa(ofs);
-    oa << this;
-}
-
- void Map::loadGame(const char *fileName) {
-
-    ifstream ifs(fileName);
-    boost::archive::text_iarchive ia(ifs);
-    
-
-    
-}
-
 
 Map::~Map() {
+
+    delete pcLoc->getCreature();
     for(int i = 0; i < x; i++) {
 	
 	for(int j = 0; j < y; j++) {
@@ -146,5 +132,4 @@ Map::~Map() {
 	}
 	
     }
-    
 }

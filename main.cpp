@@ -2,9 +2,10 @@
 #include "Creature.h"
 #include "Pc.h"
 #include "Tile.h"
+#include "Serialize.h"
 
 #include <cstdio>
-#include <fstream>
+#include <iostream>
 
 
 using namespace std;
@@ -13,31 +14,24 @@ using namespace std;
 int main() {
     
     Map m(10, 10);
-    char c = '0';
+    //    char c = '0';
 
     m.createArena();
     m.printMap();
-
-    m.saveGame("test.txt");
+    Serialize::saveObj(m,"test");
 
     Map n;
-
-    std::ifstream ifs("test.txt");
-    boost::archive::text_iarchive ia(ifs);
-    ia >> n;
-
+    Serialize::loadObj(n,"test");
     n.printMap();
-
     
-    
-    // printf("enter a numeric direction, or type q to quit: ");
+    // printf("enter a numeric direction or type q to quit: ");
     // scanf( "%c",  &c);
     
     //  while(c != 'q') {
     // 	 m.getPcLoc()->getCreature()->movePc(c - '0');
     // 	 m.printMap();
-    // 	 printf("enter a numeric direction, or type q to quit: ");
+    // 	  printf("enter a numeric direction or type q to quit: ");
     // 	 scanf( "%c",  &c);
     //  }
-     return 0;
+    return 0;
 }

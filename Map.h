@@ -1,15 +1,19 @@
 // Name: Map.h
 // Author: Cason White
 
-//Map.h is the header for a class that stores tile info and map-based functions, including
-//methods that create a debug arena map for testing purposes.
+//Map.h is the header for a class that stores tile info and map-based
+//functions, including methods that create a debug arena map for
+//testing purposes.
 
 //The members are as follows:
-// floor - a 2d vector which stores the information of every tile on the floor, as well as it's location,
+
+// floor - a 2d vector which stores the information of every tile on the 
+//       floor, as well as it's location,
+
 //int x = x size of map
 //int y = y size of map
+
 //Tile* pcLoc - current Tile location of the player character
-//                      denoted by the (x, y) position of the array.
 
 
 
@@ -30,7 +34,7 @@ using namespace std;
 
 class Tile;
 class Creature;
-class Pc;
+//class Pc;
 class Map {
 
 private:
@@ -64,8 +68,6 @@ public:
     void pMovePlayer(char dir);
 
     void printMap();
-    void saveGame(const char* fileName);
-    void loadGame(const char* fileName);
 
     Tile* getPcLoc();
     void setPcLoc(Tile* loc);
