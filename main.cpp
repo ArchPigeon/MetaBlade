@@ -14,24 +14,28 @@ using namespace std;
 int main() {
     
     Map m(10, 10);
-    //    char c = '0';
+    char c = '0';
 
     m.createArena();
     m.printMap();
-    Serialize::saveObj(m,"test");
+    m.refreshMain();
+    getch();
+    m.exitMap();
+    // Serialize::saveObj(m,"test");
 
-    Map n;
-    Serialize::loadObj(n,"test");
-    n.printMap();
+    // Map n;
+    // Serialize::loadObj(n,"test");
+    // n.printMap();
     
     // printf("enter a numeric direction or type q to quit: ");
     // scanf( "%c",  &c);
-    
+
     //  while(c != 'q') {
-    // 	 m.getPcLoc()->getCreature()->movePc(c - '0');
-    // 	 m.printMap();
-    // 	  printf("enter a numeric direction or type q to quit: ");
-    // 	 scanf( "%c",  &c);
+    //      m.getPcLoc()->getCreature()->movePc(c - '0');
+    //      m.printMap();
+    //      m.refreshMain();
+    //      printf("enter a numeric direction or type q to quit: ");
+    //      scanf( "%c",  &c);
     //  }
-    return 0;
+    // return 0;
 }

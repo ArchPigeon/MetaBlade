@@ -1,4 +1,4 @@
-CXXFLAGS = -g -Wall  -Wuninitialized -lboost_serialization
+CXXFLAGS = -g -Wall  -Wuninitialized -lboost_serialization -lncurses
 OFILES = Tile.o Creature.o Map.o Serialize.o
 CXX = g++
 
@@ -21,7 +21,7 @@ Serialize.o: Serialize.h
 	$(CXX) $(CXXFLAGS) -c Serialize.h
 
 clean:
-	rm Metablade
+	rm MetaBlade
 
 cleanall:
 	rm $(OFILES) MetaBlade

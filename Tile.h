@@ -62,6 +62,7 @@ public:
     void setPassable(bool t);
     bool getPassable() const;
 
+    char getSymbol() const;
     void setTileType(TileType t);
     TileType getTileType();
     

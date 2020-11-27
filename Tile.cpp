@@ -13,6 +13,20 @@ bool Tile::getPassable() const {
     return Tile::passable;
 }
 
+char Tile::getSymbol() const{
+  switch(tile){
+    case floor:
+      return '.';
+      break;
+    case wall:
+      return '#';
+      break;
+    default:
+      return '?';
+      break;
+  }
+}
+
 void Tile::setTileType(TileType t) {
     this->tile = t;
 }

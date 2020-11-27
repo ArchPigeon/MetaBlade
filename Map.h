@@ -29,6 +29,7 @@
 
 #include <tuple>
 #include <vector>
+#include <ncurses.h>
 
 using namespace std;
 
@@ -44,14 +45,21 @@ private:
     {
         ar & floor;
         ar & pcLoc;
+        ar & xmax;
+        ar & ymax;
         ar & x;
-	ar & y;
+        ar & y;
 	
     }
     vector <vector <Tile*> > floor;
     Tile* pcLoc = NULL;
     int x = 0;
     int y = 0;
+    int xmax;
+    int ymax;
+    WINDOW* mainscr;
+    WINDOW* status;
+    WINDOW* message;
 
     //  void Valloc(vector<Tile*> t);
 
@@ -63,7 +71,13 @@ public:
 
     void cRow(int row, int r1, int r2, TileType tile, bool value);
     void cColumn(int col, int r1, int r2, TileType tile, bool value);
-    
+
+    void refreshAll();
+    void refreshMain();
+    void refreshStatus();
+    void refreshMsg();
+    void input();
+    void exitMap();
     void createArena();
     void pMovePlayer(char dir);
 
