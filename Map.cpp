@@ -39,7 +39,7 @@ Map::Map(int x, int y) {
         //  Valloc(this->floor[i]);
 
     mainscr = newwin(0,0,0,0);
-    box(mainscr, (int)'+',(int)'+');
+//    box(mainscr, (int)'+',(int)'+');
     refresh();
     }
 
@@ -85,6 +85,21 @@ void Map::cColumn(int col, int r1, int r2, TileType tile, bool value) {
     }
 }
 
+int Map::getInput(){
+     return getch();
+}
+
+int Map::getMainInput(){
+    return wgetch(mainscr);
+}
+
+int Map::getStatusInput(){
+    return wgetch(status);
+}
+
+int Map::getMessageInput(){
+    return wgetch(message);
+}
 
 void Map::refreshAll(){
     refresh();
@@ -126,6 +141,7 @@ int getOffset(int ploc, int scrsize){
     }
 
 void Map::printMap() {
+    werase(mainscr);
     int mainx, mainy,
         offsetx, offsety;
     tuple<int,int> player = pcLoc->getLocation();

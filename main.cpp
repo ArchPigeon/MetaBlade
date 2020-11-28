@@ -14,13 +14,8 @@ using namespace std;
 int main() {
     
     Map m(10, 10);
-    char c = '0';
 
     m.createArena();
-    m.printMap();
-    m.refreshMain();
-    getch();
-    m.exitMap();
     // Serialize::saveObj(m,"test");
 
     // Map n;
@@ -29,13 +24,13 @@ int main() {
     
     // printf("enter a numeric direction or type q to quit: ");
     // scanf( "%c",  &c);
+    int c;
 
-    //  while(c != 'q') {
-    //      m.getPcLoc()->getCreature()->movePc(c - '0');
-    //      m.printMap();
-    //      m.refreshMain();
-    //      printf("enter a numeric direction or type q to quit: ");
-    //      scanf( "%c",  &c);
-    //  }
-    // return 0;
+    do{
+      m.printMap();
+      c =  m.getPcLoc()->getCreature()->movePc();
+      m.refreshMain();
+    } while((char)c != (int)'q');
+    m.getMainInput();
+    return 0;
 }

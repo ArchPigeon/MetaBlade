@@ -76,6 +76,10 @@ public:
     void refreshMain();
     void refreshStatus();
     void refreshMsg();
+    int getInput();
+    int getMainInput();
+    int getStatusInput();
+    int getMessageInput();
     void input();
     void exitMap();
     void createArena();

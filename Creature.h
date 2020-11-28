@@ -48,7 +48,7 @@ class Creature {
     char getSymbol() const;
 
     void moveCreature(int x, int y);
-    void movePc(int d);
+    int movePc();
 
 
 };
