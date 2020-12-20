@@ -29,8 +29,8 @@
 
 #include <tuple>
 #include <vector>
-#include <ncurses.h>
-
+#include <curses.h>
+//#include <panel.h> //TODO: integrate panels into the visuals for later use
 using namespace std;
 
 class Tile;
@@ -51,6 +51,14 @@ private:
         ar & y;
 	
     }
+
+    struct Node {
+        Tile** submap;
+        Node* left;
+        Node* right;
+    };
+
+
     vector <vector <Tile*> > floor;
     Tile* pcLoc = NULL;
     int x = 0;
