@@ -48,9 +48,9 @@ endif()
 # target include/link localizes the includes and libs to the target as opposed to the entire subdirs
 # https://stackoverflow.com/questions/31969547/what-is-the-difference-between-include-directories-and-target-include-directorie
 
-set(CMAKE_CXX_FLAGS -g -Wall -Wuninitialized)
+set(CMAKE_CXX_FLAGS "-g -Wall -Wuninitialized")
 # add the executable
-set(SOURCES main.cpp map.cpp tile.cpp creature.cpp serialize.h)
+set(SOURCES main.cpp Map.cpp Tile.cpp Creature.cpp Serialize.h)
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME}
 								PUBLIC ${PROJECT_BINARY_DIR}
